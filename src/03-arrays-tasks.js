@@ -183,9 +183,7 @@ function insertItem(arr, item, index) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
 function getHead(arr, n) {
-  const newArr = arr;
-  newArr.length = n;
-  return newArr;
+  return arr.slice(0, n);
 }
 
 
@@ -298,7 +296,12 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(/* arr */) {
-  // const sequence = arr.map((item, index) => );
+  // const sequence = arr.map((item, index, array) => {
+  //   const val = item;
+  //   array.splice(index, 0, item);
+  //   return val;
+  // });
+  // return sequence;
   throw new Error('Not implemented');
 }
 
@@ -334,8 +337,9 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  const positive = arr.filter((item) => typeof item === 'number' && item > 0);
+  return positive.length;
 }
 
 /**
@@ -403,8 +407,9 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurences(arr, item) {
+  const specified = arr.filter((val) => val === item);
+  return specified.length;
 }
 
 /**
@@ -489,6 +494,7 @@ function getIdentityMatrix(/* n */) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(/* start, end */) {
+  // const len = end - start + 1;
   throw new Error('Not implemented');
 }
 
@@ -503,8 +509,10 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  const setArr = new Set(arr);
+  const unique = Array.from(setArr);
+  return unique;
 }
 
 /**
@@ -595,8 +603,27 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const len = arr.length;
+  let swap;
+  if (len < 2) {
+    swap = arr;
+  } else {
+    let head;
+    let tail;
+    if (len % 2 === 0) {
+      const n = (len / 2);
+      head = arr.slice(0, n);
+      tail = arr.slice(n);
+      swap = tail.concat(head);
+    } else {
+      const n = ((len - 1) / 2);
+      head = arr.slice(0, n);
+      tail = arr.slice(n + 1);
+      swap = tail.concat(arr[n], head);
+    }
+  }
+  return swap;
 }
 
 
