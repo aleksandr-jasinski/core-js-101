@@ -27,8 +27,18 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  let result;
+  if (num % 3 === 0 && num % 5 === 0) {
+    result = 'FizzBuzz';
+  } else if (num % 3 === 0) {
+    result = 'Fizz';
+  } else if (num % 5 === 0) {
+    result = 'Buzz';
+  } else {
+    result = num;
+  }
+  return result;
 }
 
 
@@ -43,8 +53,21 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let factorial = 1;
+  if (n === 0) {
+    factorial = 1;
+  } else if (n < 3) {
+    factorial = n;
+  } else {
+    let i = 2;
+    while (i <= n) {
+      factorial *= i;
+      i += 1;
+    }
+  }
+
+  return factorial;
 }
 
 
@@ -60,8 +83,12 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let sum = 0;
+  for (let index = n1; index <= n2; index += 1) {
+    sum += index;
+  }
+  return sum;
 }
 
 
@@ -80,8 +107,14 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  let canBe;
+  if ((a + b > c) && (b + c > a) && (c + a > b)) {
+    canBe = true;
+  } else {
+    canBe = false;
+  }
+  return canBe;
 }
 
 
@@ -117,8 +150,14 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  let isOverlap;
+  if ((rect1.top + rect1.height) > rect2.top && (rect1.left + rect1.width) > rect2.left) {
+    isOverlap = true;
+  } else {
+    isOverlap = false;
+  }
+  return isOverlap;
 }
 
 
@@ -148,8 +187,16 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  let isInside;
+  const centre = circle.center;
+  const len = Math.sqrt((point.x - centre.x) ** 2 + (point.y - centre.y) ** 2);
+  if (len < circle.radius) {
+    isInside = true;
+  } else {
+    isInside = false;
+  }
+  return isInside;
 }
 
 
@@ -208,8 +255,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 
@@ -225,10 +272,11 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const str = num.toString();
+  const n = str.split('').reverse().join('');
+  return Number(n);
 }
-
 
 /**
  * Validates the CCN (credit card number) and return true if CCN is valid
@@ -268,8 +316,10 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const root = (num - 1) % 9;
+
+  return root + 1;
 }
 
 
@@ -292,7 +342,7 @@ function getDigitalRoot(/* num */) {
  *   '[[][][[]]]' => true
  *   '[[][]][' => false
  *   '{)' = false
- *   '{[(<{[]}>)]}' = true
+ *   '{[(<{[]}>)]}' = truethrow new Error('Not implemented')
  */
 function isBracketsBalanced(/* str */) {
   throw new Error('Not implemented');
